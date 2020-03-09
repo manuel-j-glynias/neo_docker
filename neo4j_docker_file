@@ -1,0 +1,10 @@
+FROM neo4j:3.5.14
+ENV APOC_VERSION=3.5.0.7
+ENV APOC_URI=https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${APOC_VERSION}/apoc-${APOC_VERSION}-all.jar
+ENV GRAPHQL_VERSION=3.5.0.4
+ENV GRAPHQL_URI=https://github.com/neo4j-graphql/neo4j-graphql/releases/download/${GRAPHQL_VERSION}/neo4j-graphql-${GRAPHQL_VERSION}.jar
+ADD --chown=neo4j:neo4j ${APOC_URI} plugins
+ADD --chown=neo4j:neo4j ${GRAPHQL_URI} plugins
+ENV NEO4J_dbms_unmanaged__extension__classes=org.neo4j.graphql=/graphql
+ENV NEO4J_AUTH=neo4j/omni
+CMD [ "neo4j" ]
