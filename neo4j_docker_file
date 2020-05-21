@@ -7,4 +7,9 @@ ADD --chown=neo4j:neo4j ${APOC_URI} plugins
 ADD --chown=neo4j:neo4j ${GRAPHQL_URI} plugins
 ENV NEO4J_dbms_unmanaged__extension__classes=org.neo4j.graphql=/graphql
 ENV NEO4J_AUTH=neo4j/omni
+
+ENV NEO4J_HOME /var/lib/neo4j
+
+ADD neo4j.conf $NEO4J_HOME/conf/neo4j.conf
+
 CMD [ "neo4j" ]
